@@ -1,16 +1,22 @@
 import React from "react";
-import "./Cards.css";
+import { Link } from "react-router-dom";
+import  styles from "../Cards/Cards.css";
 
-const Cards = ({ results }) => {
+const Cards = ({ results, page }) => {
   console.log(results);
   let dispaly;
   if (results) {
     dispaly = results.map((x) => {
       let { id, name, image, location, status } = x;
       return (
-        <div key={id} className="col-4 position-relative mb-4">
-          <div className="cards">
-            <img src={image} alt="" className="img-fluid" />
+        <Link
+          style={{textDecoration: "none"}}
+          to={`${page}${id}`}
+          key={id}
+          className="col-lg-4 col-md-6 col-12 position-relative mb-4 text-dark"
+        >
+          <div className={`${styles.cards} d-flex flex-column justify-content-center`}>
+            <img src={image} alt="img" className="img-fluid" />
             <div className="content">
               <div className="fs-4 fw-bold mb-4">{name}</div>
               <div className="">
@@ -40,7 +46,7 @@ const Cards = ({ results }) => {
               );
             }
           })()}
-        </div>
+        </Link>
       );
     });
   } else {

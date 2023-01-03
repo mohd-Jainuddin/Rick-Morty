@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom';
+import '../../App.css'
 
 const Navbar = () => {
   return (
@@ -9,7 +10,7 @@ const Navbar = () => {
           Rick & Morty <span className="text-primary">WiKi</span>
         </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
@@ -17,11 +18,27 @@ const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <style jsx>
+            {`
+              button[aria-expanded="false"] > .x {
+                display: none;
+              }
+
+              button[aria-expanded="true"] > .y {
+                display: none;
+              }
+            `}
+          </style>
+
+          <i class="fa-solid fa-bars y fw-bold text-dark"></i>
+          <i class="fa-solid fa-xmark x fw-bold text-dark"></i>
         </button>
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNavAltMarkup"
+        >
           <div class="navbar-nav fs-5">
-            <NavLink to="/" className="nav-link active">
+            <NavLink activeClassName="active" to="/" className="nav-link">
               Characters
             </NavLink>
             <NavLink to="/episode" className="nav-link">

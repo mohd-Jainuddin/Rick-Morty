@@ -11,19 +11,26 @@ import Search from "./Components/Search/Search";
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Episode from "./Pages/Episode";
 import Location from "./Pages/Location";
+import CardDetails from "./Components/Cards/CardDetails";
 
 function App(){
-  return(
+  return (
     <Router>
-      <div className="App"> <Navbar /></div>
-
+      <div className="App">
+        <Navbar />
+      </div>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/episode" element={<Episode/>}/>
-        <Route path="/location" element={<Location/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<CardDetails />} />
+
+        <Route path="/episode" element={<Episode />} />
+        <Route path="/episode/:id" element={<CardDetails />} />
+
+        <Route path="/location" element={<Location />} />
+        <Route path="/location/:id" element={<CardDetails />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
 const Home = ()=> {
@@ -47,13 +54,14 @@ const Home = ()=> {
 
   return (
     <div className="App">
+      <h1 className="text-center mb-4">Characters</h1>
       <Search setSearch={setSearch} setPageNumber={setPageNumber} />
       <div className="container">
         <div className="row">
           <Filters setStatus={setStatus} setPageNumber={setPageNumber} setGender={setGender} setSpecies={setSpecies}/>
-          <div className="col-8">
+          <div className="col-lg-8 col-12">
             <div className="row">
-              <Cards results={results} />
+              <Cards page="/" results={results} />
             </div>
           </div>
         </div>
